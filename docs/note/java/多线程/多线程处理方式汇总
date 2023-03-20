@@ -1,0 +1,132 @@
+--------------------------------多线程基本概念-----------------------------
+进程和线程：
+1）进程是静态的，其实就是指开启的一个程序；而线程是动态的，是真正执行的单元，执行的过程。其实我们平时看到的进程，是线程在执行着，因为线程是作为进程的一个单元存在的。
+2）同样作为基本的执行单元，线程是划分得比进程更小的执行单位。
+3）每个进程都有一段专用的内存区域。与此相反，线程却共享内存单元（包括代码和数据），通过共享的内存单元来实现数据交换、实时通信与必要的同步操作。
+1、创建线程的方式：
+创建方式一：继承Thread
+    1：定义一个类继承Thread
+    2：覆盖Thread中的run方法（将线程运行的代码放入run方法中）。
+    3：直接创建Thread的子类对象
+    4：调用start方法（内部调用了线程的任务（run方法））；作用：启动线程，调用run方法
+ 
+方式二：实现Runnable
+    1：定义类实现Runnable接口
+    2：覆盖Runnable接口中的run方法，将线程的任务代码封装到run中
+    3：通过Thread类创建线程对象
+4、并将Runnable接口的子类对象作为Thread类的构造函数参数进行传递
+作为参数传递的原因是让线程对象明确要运行的run方法所属的对象。
+区别：
+       继承方式：线程代码放在Thread子类的run方法中
+       实现方式：线程存放在接口的子类run方法中；避免了单继承的局限性，建议使用。
+2、线程状态：
+新建：start()
+临时状态：具备cpu的执行资格，但是无执行权
+运行状态：具备CPU的执行权，可执行
+冻结状态：通过sleep或者wait使线程不具备执行资格，需要notify唤醒，并处于临时状态。
+消亡状态：run方法结束或者中断了线程，使得线程死亡。
+3、多线程安全问题：
+多个线程共享同一数据，当某一线程执行多条语句时，其他线程也执行进来，导致数据在某一语句上被多次修改，执行到下一语句时，导致错误数据的产生。
+因素：多个线程操作共享数据；多条语句操作同一数据
+解决：
+       原理：某一时间只让某一线程执行完操作共享数据的所有语句。
+       办法：使用锁机制：synchronized或lock对象
+4、线程的同步：
+当两个或两个以上的线程需要共享资源，他们需要某种方法来确定资源在某一刻仅被一个线程占用，达到此目的的过程叫做同步（synchronization）。
+同步代码块：synchronized(对象){}，将需要同步的代码放在大括号中，括号中的对象即为锁。
+同步函数：放于函数上，修饰符之后，返回类型之前。
+5、wait和sleep的区别：（执行权和锁区分）
+wait：可指定等待的时间，不指定须由notify或notifyAll唤醒。
+       线程会释放执行权，且释放锁。
+sleep：必须制定睡眠的时间，时间到了自动处于临时（阻塞）状态。
+       即使睡眠了，仍持有锁，不会释放执行权。
+
+---------------------------------多线程同步方法-----------------------------------
+1：AtomicBoolean （java.util.concurrent）保证数据操作的原子性
+在这个Boolean值的变化的时候不允许在之间插入，保持操作的原子性。方法和举例：compareAndSet(boolean expect, boolean update)。这个方法主要两个作用         1. 比较AtomicBoolean和expect的值，如果一致，执行方法内的语句。其实就是一个if语句         2. 把AtomicBoolean的值设成update         比较最要的是这两件事是一气呵成的，这连个动作之间不会被打断，任何内部或者外部的语句都不可能在两个动作之间运行。为多线程的控制提供了解决的方案
+eg.
+public class BarWorker2 implements Runnable {  
+      
+    private static AtomicBoolean exists = new AtomicBoolean(false);    
+      
+        
+     private String name;    
+         
+     public BarWorker2(String name) {     
+          this.name = name;    
+     }    
+       
+     @Override    
+     public void run() {     
+         if (exists.compareAndSet(false, true)) {    
+                    
+             System.out.println(name + " enter");    
+             try {    
+                  System.out.println(name + " working");    
+                  TimeUnit.SECONDS.sleep(2);    
+             } catch (InterruptedException e) {    
+                  // do nothing    
+             }    
+             System.out.println(name + " leave");    
+             exists.set(false);      
+        } else {    
+             System.out.println(name + " give up");    
+        }    
+    
+    }  
+2:synchronized修饰代码块（synchronized只锁定对象，每个对象只有一个锁（lock）与之相关联）
+class SyncThread implements Runnable {
+   private static int count;
+
+   public SyncThread() {
+      count = 0;
+   }
+
+   public  void run() {
+      synchronized(this) {
+         for (int i = 0; i < 5; i++) {
+            try {
+               System.out.println(Thread.currentThread().getName() + ":" + (count++));
+               Thread.sleep(100);
+            } catch (InterruptedException e) {
+               e.printStackTrace();
+            }
+         }
+      }
+   }
+   public int getCount() {
+      return count;
+   }
+}
+
+3：synchronized修饰一个方法
+public synchronized void run() {
+   for (int i = 0; i < 5; i ++) {
+      try {
+         System.out.println(Thread.currentThread().getName() + ":" + (count++));
+         Thread.sleep(100);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+   }
+}
+4：可重入锁ReentranLock（java.util.concurrent.lock ）
+Lock lock = new ReentrantLock();  
+lock.lock();  
+try {   
+  // update object state  
+}  
+finally {  
+  lock.unlock();   
+}  
+
+CAS
+
+
+
+
+
+总结
+A. 无论synchronized关键字加在方法上还是对象上，如果它作用的对象是非静态的，则它取得的锁是对象；如果synchronized作用的对象是一个静态方法或一个类，则它取得的锁是对类，该类所有的对象同一把锁。 
+B. 每个对象只有一个锁（lock）与之相关联，谁拿到这个锁谁就可以运行它所控制的那段代码。 
+ C.synchronized 所没有的特性，比如时间锁等候、可中断锁等候、无块结构锁、多个条件变量或者锁投票
