@@ -23,6 +23,7 @@
   window.$docsify = {
 
     loadSidebar: true,
+
     search: 'auto', // 默认值
     search: {
       maxAge: 86400000, // 过期时间，单位毫秒，默认一天
@@ -58,7 +59,11 @@
       },
       isExpected: true,
     },
-    subMaxLevel: 1,
+    // subMaxLevel: 1,
+    alias: {
+      '/.*/_sidebar.md': '/_sidebar.md',
+    },
+    subMaxLevel: 2,
     // 跳转后自动到顶部
     auto2top: true,
     name: 'laolangs',
@@ -68,7 +73,7 @@
 
 <script src="./static/js/docsify.min.js"></script>
 <script src="./static/js/pdfobject.min.js"></script> 
-<script src="path-to-file/docsify-pdf-embed.js"></script>
+<script src="./static/js/docsify-pdf-embed.js"></script>
 <script src="./static/js/docsify-pdf-embed.js"></script>
 <script src="./static/js/prism-python.min.js"></script>
 <script src="./static/js/prism-docker.min.js"></script>
@@ -81,5 +86,5 @@
 <script src="./static/js/search.min.js"></script>
 <script src="./static/js/docsify-pagination.min.js"></script>
 <script src="./static/js/countable.min.js"></script>
-
+<script src="./static/js/docsify-sidebar-collapse.min.js"></script>
 </html>
