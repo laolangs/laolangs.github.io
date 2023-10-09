@@ -21,3 +21,8 @@ cmd+shift+\  左右括号跳转
 
 ctrl+-  跳转上次光标位置
 ctrl+shift+- 跳转下次光标位置
+
+cmd+. 重构
+cmd+, 设置
+
+cmd+k cmd+s 快捷键查看
