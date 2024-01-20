@@ -9,33 +9,46 @@
   * [python基础](./note/python/python基础.md)
   * [grafana配置地震视图](./note/python/grafana配置地震视图.md)
 * rust
+  * 宏
+    * [过程宏](./note/rust/宏/过程宏.md)
+    * [宏](./note/rust/宏/宏.md)
+    * [rust编译过程](./note/rust/宏/rust编译过程.md)
   * [所有权](./note/rust/所有权.md)
   * [多线程](./note/rust/多线程.md)
+  * [tokio](./note/rust/tokio.md)
   * [类型转换](./note/rust/类型转换.md)
   * [rust基础语法](./note/rust/rust基础语法.md)
   * [泛型](./note/rust/泛型.md)
   * [match用例](./note/rust/match用例.md)
   * [rust解引用](./note/rust/rust解引用.md)
+  * rust疑难杂项
+    * [那些难理解的点](./note/rust/rust疑难杂项/那些难理解的点.md)
+  * [Future 执行器与任务调度 ](./note/rust/Future 执行器与任务调度 .md)
   * [Rc](./note/rust/Rc.md)
   * [自定义异常](./note/rust/自定义异常.md)
   * [rust错误处理](./note/rust/rust错误处理.md)
+  * [common-rust-lifetime-misconceptions](./note/rust/common-rust-lifetime-misconceptions.md)
   * [测试用例](./note/rust/测试用例.md)
   * [vscode快捷键](./note/rust/vscode快捷键.md)
+  * [tour-of-rusts-standard-library-traits](./note/rust/tour-of-rusts-standard-library-traits.md)
   * [生命周期](./note/rust/生命周期.md)
+  * [half_hour_learn_rust](./note/rust/half_hour_learn_rust.md)
   * [迭代器](./note/rust/迭代器.md)
 * java
   * 算法
-    * [read](./note/java/算法/read.md)
-  * 多线程
-    * [read](./note/java/多线程/read.md)
-  * jvm调优
-    * [问题排查](./note/java/jvm调优/问题排查.md)
 * wb
   * 商城
     * [lilishop](./note/wb/商城/lilishop.md)
 * [md帮助文档](./note/md帮助文档.md)
 * 面试
+  * 分布式
+  * CI
+  * java
   * [README](./note/面试/README.md)
+  * 缓存
+  * mysql
+  * 消息队列
+  * spring
 * mac
   * [mac配置](./note/mac/mac配置.md)
   * [墙](./note/mac/墙.md)
