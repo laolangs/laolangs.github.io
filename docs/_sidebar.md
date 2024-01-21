@@ -35,6 +35,7 @@
   * [half_hour_learn_rust](./note/rust/half_hour_learn_rust.md)
   * [迭代器](./note/rust/迭代器.md)
 * java
+  * [leetcode](./note/java/leetcode.md)
   * 算法
 * wb
   * 商城

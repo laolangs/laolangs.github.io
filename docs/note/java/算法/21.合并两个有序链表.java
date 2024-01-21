@@ -36,7 +36,23 @@ class Solution {
             }else{
                 p.next = l1;
                 l1 = l1.next;
-            }
+            } 
+            //去重
+
+            /* 
+             *     if(l1.val > l2.val){
+             *       p.next = l2;
+             *       l2 = l2.next;
+             *     }else(l1.val < l2.val){
+             *       p.next = l1;
+             *       l1 = l1.next;
+             *     }else{
+             *       p.next = new ListNode(l1.val);
+             *       l1 = l1.next;
+             *       l2 = l2.next;
+             *     }
+             * 
+             */
             // p指针后移
             p = p.next;
         }

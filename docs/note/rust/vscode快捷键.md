@@ -24,5 +24,9 @@ ctrl+shift+- 跳转下次光标位置
 
 cmd+. 重构
 cmd+, 设置
+shift+option  列选择
 
 cmd+k cmd+s 快捷键查看
+
+cmd+/ 单行注释
+option+shift+a 多行注释
