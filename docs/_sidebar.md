@@ -1,9 +1,9 @@
-* docker
-  * [Dockfile](./note/docker/Dockfile.md)
-  * [mac_docker通信](./note/docker/mac_docker通信.md)
-  * [docker-compose](./note/docker/docker-compose.md)
-  * [docker](./note/docker/docker.md)
-  * [Docker基础命令](./note/docker/Docker基础命令.md)
+* Docker
+  * [Dockfile](./note/Docker/Dockfile.md)
+  * [mac_docker通信](./note/Docker/mac_docker通信.md)
+  * [docker-compose](./note/Docker/docker-compose.md)
+  * [docker](./note/Docker/docker.md)
+  * [Docker基础命令](./note/Docker/Docker基础命令.md)
 * python
   * [Aconda使用](./note/python/Aconda使用.md)
   * [python基础](./note/python/python基础.md)
@@ -37,26 +37,34 @@
 * java
   * [leetcode](./note/java/leetcode.md)
   * 算法
+    * [动态规划](./note/java/算法/动态规划.md)
 * wb
   * 商城
     * [lilishop](./note/wb/商城/lilishop.md)
 * [md帮助文档](./note/md帮助文档.md)
 * 面试
+  * [话术](./note/面试/话术.md)
   * 分布式
   * CI
+  * 数据库
   * java
+  * 八股
+    * [多线程](./note/面试/八股/多线程.md)
   * [README](./note/面试/README.md)
-  * 缓存
-  * mysql
   * 消息队列
-  * spring
+    * [消息队列选型](./note/面试/消息队列/消息队列选型.md)
+  * Spring
 * mac
+  * [vless脚本](./note/mac/vless脚本.md)
   * [mac配置](./note/mac/mac配置.md)
   * [墙](./note/mac/墙.md)
+  * [反代ip获取](./note/mac/反代ip获取.md)
 * linux
   * [基础命令](./note/linux/基础命令.md)
 * book
   * [android](./note/book/android.md)
+* son
+  * [儿童英语学习](./note/son/儿童英语学习.md)
 * 工作
   * [文档](./note/工作/文档.md)
 * git
