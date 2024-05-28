@@ -11,9 +11,9 @@ DI:依赖注入，把对应的属性的值注入到具体的对象中，@Autowir
 1. 一般聊IOC容器的时候要涉及容器的创建过程（BeanFactory,DefaultListableBeanFactory）,向bean工厂中设置一些参数（BeanPostProcessor,Aware接口的子类）等等属性
 2. 加载解析bean对象，准备要创建的bean对象的定义对象beanDefinition(xml,或者注解的解析过程)
 3. beanFactoryPostProcesssor的处理，此处是扩展点，PlaceHolderConfigueSupport,ConfigurationClassPostProcessor
-4. BeanPostProcessor的注册功能，方便后续对ban对象完成具体的扩展功能
+4. BeanPostProcessor的注册功能，方便后续对bean对象完成具体的扩展功能
 5. 通过反射的方式将beanDefinition对象实例化成具体的bean对象
-6. bean对象的初始化过程（填充属性，调用aware子类的方法，调用BeanPostProcessor前置处理方法，调用init-method方法，BeanPostProcessor的后置处理方法）
+6. bean对象的初始化过程（populateBean填充属性，调用aware子类的方法，调用BeanPostProcessor前置处理方法，调用init-method方法，BeanPostProcessor的后置处理方法）
 7. 生成完成的bean对象，通过getBean方法可以直接获取
 8. 销毁过程
 这是我对ioc的整体理解，包含了一些详细的梳理过程，您看一下有什么问题，可以指点一下
@@ -95,7 +95,7 @@ aop是ioc的一个扩展功能，先有ioc再有aop,只是在ioc的整个流程�
 2. 通过jdk或者cglib的方式生成代理对象
 3. 在执行方法调用的时候，会调用到生成的字节码文件中，直接会找DynamicAdvisorInterceptor类中的intercept方法开始执行
 4. 根据之前定义好的通知来生成拦截器链
-5. 从连接器链中一次获取每一个通知开始进行执行，在执行过程中为了方便找到下一个通知是哪个，会有一个CglibMethodInvocation的对象，找的时候是从-1的位置一次开始查找并且执行的
+5. 从连接器链中一次获取每一个通知开始进行执行，在执行过程中为了方便找到下一个通知是哪个，会有一个CglibMethodInvocation的对象，找的时候是从-1的位置依次开始查找并且执行的
 
 ## 8. Spring事务是如何回滚的
 
@@ -113,6 +113,21 @@ aop是ioc的一个扩展功能，先有ioc再有aop,只是在ioc的整个流程�
 ## 9. 谈一下Spring事务
 
 传播特性7种：Propagation.REQUIRED,Propagation.REQUIRES_NEW,Propagation.MANDATORY,Propagation.NESTED,Propagation.NEVER,Propagation.NOT_SUPPORTED,Propagation.SUPPORTS
+
+1. **REQUIRED**：默认的传播行为。如果当前存在事务，则加入该事务；如果当前没有事务，则新建一个事务。
+
+2. **REQUIRES_NEW**：始终开启一个新的事务，如果当前存在事务，则将当前事务挂起。
+
+3. **SUPPORTS**：如果当前存在事务，则加入该事务；如果当前没有事务，则以非事务方式执行。
+
+4. **MANDATORY**：要求当前存在事务，如果不存在事务，则抛出异常。
+
+5. **NOT_SUPPORTED**：以非事务方式执行，如果当前存在事务，则将当前事务挂起。
+
+6. **NEVER**：以非事务方式执行，如果当前存在事务，则抛出异常。
+
+7. **NESTED**：如果当前存在事务，则在嵌套事务中执行；如果当前没有事务，则开启一个新的事务。
+
 事务隔离级别：Isolation.REPEATABLE_READ,Isolation.READ_COMMITTED,Isolation.READ_UNCOMMITTED,Isolation.SERIALIZABLE
 
 A方法调用B方法，AB都有事务，并且传播特性不同，A异常B怎么办，B异常A怎么办

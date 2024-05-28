@@ -67,3 +67,7 @@ docker rmi <镜像id/镜像名称> <镜像id/镜像名称>
 # 打标签
 docker tag <镜像id/镜像名称>  <标签名>
 docker tag IMAGE[:TAG] [REGISTRY_HOST[:REGISTRY_PORT]/]REPOSITORY[:TAG]
+
+# 推送镜像
+docker login
+docker push [用户名]/[仓库名]:[标签]
